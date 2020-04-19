@@ -37,6 +37,8 @@ namespace Api
         {
             if (env.IsDevelopment())
             {
+                app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod());
+
                 app.UseDeveloperExceptionPage();
             }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Api.Common;
 using Api.Model;
@@ -19,8 +20,11 @@ namespace Api.Controllers
             _boardService = boardService ?? throw new ArgumentNullException(nameof(boardService));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAvailableMoves([FromQuery]PieceType pieceType, [FromQuery]int row, [FromQuery]int column)
+        [HttpGet("moves")]
+        public async Task<IActionResult> GetAvailableMoves(
+            [FromQuery][Required]PieceType pieceType,
+            [FromQuery][Required]int row,
+            [FromQuery][Required]int column)
         {
             var moves = await _boardService.GetAvailableMoves(pieceType, new BoardPostion(row, column));
 
@@ -32,13 +36,13 @@ namespace Api.Controllers
             return Ok(moves);
         }
 
-        [HttpGet]
+        [HttpGet("check")]
         public async Task<IActionResult> CheckMove(
-            PieceType pieceType,
-            [FromQuery]int currentRow,
-            [FromQuery]int currentColumn,
-            [FromQuery]int newRow,
-            [FromQuery]int newColumn)
+            [FromQuery][Required]PieceType pieceType,
+            [FromQuery][Required]int currentRow,
+            [FromQuery][Required]int currentColumn,
+            [FromQuery][Required]int newRow,
+            [FromQuery][Required]int newColumn)
         {
             var moveStatus = await _boardService.CheckMove(
                 pieceType,

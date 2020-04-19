@@ -7,7 +7,7 @@ namespace Api.Services.Logic.Strategies
     {
         protected override IEnumerable<BoardPostion> GetAvailableMoves(BoardPostion piecePostion)
         {
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < BoardSize; i++)
             {
                 if (i != piecePostion.Row)
                 {

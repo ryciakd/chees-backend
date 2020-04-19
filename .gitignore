@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/chess-backend/Api/bin/Debug/netcoreapp3.1
+/chess-backend/Api/obj
+/chess-backend/Services/bin/Debug/netcoreapp3.1
+/chess-backend/Services/obj
+/chess-backend/.vs
+/chess-frontend

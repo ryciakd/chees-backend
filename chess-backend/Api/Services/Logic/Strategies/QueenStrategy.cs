@@ -1,15 +1,24 @@
 ﻿using Api.Model;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Api.Services.Logic.Strategies
 {
-    public class QueenStrategy : IPieceStrategy
+    public class QueenStrategy : PieceStrategyBase
     {
-        public async Task<IEnumerable<BoardPostion>> GetAvailableMovesAsync(BoardPostion piecePostion)
+        protected override IEnumerable<BoardPostion> GetAvailableMoves(BoardPostion piecePostion)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < 8; i++)
+            {
+                if (i != piecePostion.Row)
+                {
+                    yield return new BoardPostion(i, piecePostion.Column);
+                }
+                if (i != piecePostion.Column)
+                {
+                    yield return new BoardPostion(piecePostion.Row, i);
+                }
+                //TODO: logic
+            }
         }
     }
 }

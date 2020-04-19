@@ -19,7 +19,7 @@ namespace Api.Controllers
             _boardService = boardService ?? throw new ArgumentNullException(nameof(boardService));
         }
 
-        [HttpGet()]
+        [HttpGet]
         public async Task<IActionResult> GetAvailableMoves([FromQuery]PieceType pieceType, [FromQuery]int row, [FromQuery]int column)
         {
             var moves = await _boardService.GetAvailableMoves(pieceType, new BoardPostion(row, column));
@@ -32,7 +32,7 @@ namespace Api.Controllers
             return Ok(moves);
         }
 
-        [HttpGet("{pieceId}")]
+        [HttpGet]
         public async Task<IActionResult> CheckMove(
             PieceType pieceType,
             [FromQuery]int currentRow,

@@ -1,18 +1,23 @@
 ﻿using Api.Model;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Api.Services.Logic.Strategies
 {
-    public class RookStrategy : IPieceStrategy
+    public class RookStrategy : PieceStrategyBase
     {
-        public async Task<IEnumerable<BoardPostion>> GetAvailableMovesAsync(BoardPostion piecePostion)
+        protected override IEnumerable<BoardPostion> GetAvailableMoves(BoardPostion piecePostion)
         {
-            return await Task.Run(() =>
+            for (int i = 0; i < 8; i++)
             {
-                return new[] { new BoardPostion(1, 1) };
-            });
+                if (i != piecePostion.Row)
+                {
+                    yield return new BoardPostion(i, piecePostion.Column);
+                }
+                if (i != piecePostion.Column)
+                {
+                    yield return new BoardPostion(piecePostion.Row, i);
+                }
+            }
         }
     }
 }

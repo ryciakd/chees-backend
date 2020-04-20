@@ -10,5 +10,6 @@ namespace Api.Services
         Task<IEnumerable<BoardPostion>> GetAvailableMoves(PieceType pieceType, BoardPostion piecePostion);
           
         Task<MoveCheckStatus> CheckMove(PieceType pieceType, BoardPostion currentPostion, BoardPostion boardPostion);
+        Task<PieceType[]> GetAvailablePieces();
     }
 }

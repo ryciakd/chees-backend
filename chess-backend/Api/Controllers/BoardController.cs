@@ -57,5 +57,12 @@ namespace Api.Controllers
             return Ok(moveStatus);
         }
 
+        [HttpGet("pieces")]
+        public async Task<IActionResult> GetPieces()
+        {
+            var availablePieces = await _boardService.GetAvailablePieces();
+            return Ok(availablePieces);
+        }
+
     }
 }

@@ -8,3 +8,5 @@
 /chess-backend/Services/obj
 /chess-backend/.vs
 /chess-frontend
+/chess-backend/UnitTest/bin/Debug/netcoreapp3.1
+/chess-backend/UnitTest/obj

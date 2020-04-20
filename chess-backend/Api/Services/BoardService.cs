@@ -14,7 +14,7 @@ namespace Api.Services
 
         public BoardService(IPieceStrategyFactory pieceStrategyFactory)
         {
-            this.pieceStrategyFactory = pieceStrategyFactory;
+            this.pieceStrategyFactory = pieceStrategyFactory ?? throw new ArgumentNullException(nameof(pieceStrategyFactory));
         }
 
         public async Task<MoveCheckStatus> CheckMove(PieceType pieceType, BoardPostion currentPostion, BoardPostion boardPostion)
@@ -40,9 +40,14 @@ namespace Api.Services
             }
             catch (Exception e)
             {
-                //TODO: log expcetion
+                //TODO: log exception
                 return await Task.FromResult<IEnumerable<BoardPostion>>(null);
             }
-        } 
+        }
+
+        public async Task<PieceType[]> GetAvailablePieces()
+        {
+            return await Task.FromResult(new PieceType[] { PieceType.Queen, PieceType.Rook});
+        }
     }
 }

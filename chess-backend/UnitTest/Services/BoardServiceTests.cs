@@ -150,5 +150,20 @@ namespace UnitTests.Services
             //Arrange
             Assert.That(result.Equals(MoveCheckStatus.Error));
         }
+
+        [Test]
+        public void GetAvailablePiecesShouldWork()
+        {
+            //Arrange
+            var factoryMock = new Mock<IPieceStrategyFactory>();
+            var uut = new BoardService(factoryMock.Object);
+
+            //Act
+            var result = uut.GetAvailablePieces().Result;
+
+            //Assert
+            Assert.Contains(PieceType.Queen, result);
+            Assert.Contains(PieceType.Rook, result);
+        }
     }
 }
